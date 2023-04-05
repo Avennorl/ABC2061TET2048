@@ -148,7 +148,48 @@ public class Tetromino {
    public Point getMinBoundedTileMatrixPosition() {
       return minBoundedTileMatrixPosition;
    }
+public boolean Rotate(Grid gameGrid) {
 
+        if (bottomLeftCorner.y + tileMatrix.length > gridHeight) 
+            return false;
+
+
+        int n = tileMatrix.length;
+        for (int row = 0; row < n; row++) {
+            for (int col = 0; col < n; col++) {
+                Point position = new Point();
+
+                if(tileMatrix[row][col] != null)
+                    position = tileMatrix[row][col].getPosition();
+                else {
+                    position.x = bottomLeftCorner.x + col;
+                    position.y = bottomLeftCorner.y + (n-1) - row;
+                }
+
+                if(position.x < 0 || position.x >= gridWidth)
+                    return false;
+
+                if (gameGrid.isOccupied(position))
+                    return false;
+            }
+        }
+
+        Tile [][] rotatedMatrix = new Tile[n][n]; 
+        for (int row = 0; row < n; row++) {
+            for (int col = 0; col < n; col++) {
+                if(tileMatrix[row][col]==null)
+                    continue;
+
+                Point position = tileMatrix[row][col].getPosition();
+                rotatedMatrix[col][n-1-row] = tileMatrix[row][col];
+                position.x=bottomLeftCorner.x + (n-1-row);
+                position.y=bottomLeftCorner.y + (n-1) - col;
+                tileMatrix[row][col].setPosition(position);
+            }
+        }
+        tileMatrix = rotatedMatrix;
+        return true;
+    }
    // A method for drawing the tetromino on the game grid
    public void draw() {
       int n = tileMatrix.length; // n = number of rows = number of columns
