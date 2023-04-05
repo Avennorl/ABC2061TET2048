@@ -42,7 +42,35 @@ public class Tetromino {
          occupiedTiles[1] = new Point(1, 0);
          occupiedTiles[2] = new Point(0, 1);
          occupiedTiles[3] = new Point(1, 1);
-      } else { // type == 'Z'
+      }   else if (type == 'S') { // ben ekledim
+    	  n=3;
+    	  occupiedTiles[0] = new Point(0, 1); // (column_index, row_index)
+          occupiedTiles[1] = new Point(1, 0);
+          occupiedTiles[2] = new Point(1, 1);
+          occupiedTiles[3] = new Point(2, 0);
+    	  
+      } else if ( type == 'T') { // ben ekledim
+    	  n=3;
+    	  occupiedTiles[0] = new Point(0, 1); // (column_index, row_index)
+          occupiedTiles[1] = new Point(1, 1);
+          occupiedTiles[2] = new Point(1, 2);
+          occupiedTiles[3] = new Point(2, 1);
+      } else if (type == 'J') { //Ben ekledim
+    	  n=3;
+    	  occupiedTiles[0] = new Point(1, 0); // (column_index, row_index)
+          occupiedTiles[1] = new Point(1, 1);
+          occupiedTiles[2] = new Point(1, 2);
+          occupiedTiles[3] = new Point(0, 2);
+      } else if ( type == 'L') { // ben ekledim
+    	  n=3;
+    	  occupiedTiles[0] = new Point(1, 0); // (column_index, row_index)
+          occupiedTiles[1] = new Point(1, 1);
+          occupiedTiles[2] = new Point(1, 2);
+          occupiedTiles[3] = new Point(2, 2);
+      } 
+      
+      
+      else { // type == 'Z'
          n = 3; // n = number of rows = number of columns in the tile matrix
          // shape of the tetromino Z in its initial orientation
          occupiedTiles[0] = new Point(0, 1); // (column_index, row_index)
